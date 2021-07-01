@@ -31,12 +31,13 @@ jobs:
         with:
           node-version: 12
           
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build # will run `yarn build` command
+      - uses: c-hive/gha-yarn-cache@v2
+
+      - name: Install JS dependencies
+        run: yarn install
+        
+      - name: Build
+        run: yarn build
         
       - name: Install Surge
         run: npm install --global surge
